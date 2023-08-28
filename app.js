@@ -115,6 +115,7 @@ app.use((err, req, res, next)=>{
     next()
 })
 
-app.listen(3000, (req, res) => {
-    console.log('connection on port 3000 established')
+const port = process.env.PORT || 3000
+app.listen(port, (req, res) => {
+    console.log(`connection on port ${port}`)
 })
