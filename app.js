@@ -22,6 +22,8 @@ const campgroundRoutes = require('./routes/campgrounds')
 const reviewsRoutes = require('./routes/reviews')
 const userRoutes = require('./routes/users')
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp'
+const port = process.env.PORT || 3000
+
 
 mongoose.connect(dbUrl, {
     useNewUrlParser : true,
@@ -29,6 +31,9 @@ mongoose.connect(dbUrl, {
 })
     .then(() => {
         console.log('mongo Connection open')
+        app.listen(port, (req, res) => {
+            console.log(`connection on port ${port}`)
+        })
     })
     .catch(err => {
         console.log('mongo error')
@@ -115,7 +120,3 @@ app.use((err, req, res, next)=>{
     next()
 })
 
-const port = process.env.PORT || 3000
-app.listen(port, (req, res) => {
-    console.log(`connection on port ${port}`)
-})
